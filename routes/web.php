@@ -11,11 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('post.index');
-});
-
-
+Route::get('/', 'PostController@getIndex')->name('index');
 
 Auth::routes();
 
@@ -28,3 +24,5 @@ Route::get('/post/edit/{id}', 'HomeController@editPost')->name('post.edit');
 Route::post('/post/edit/{id}', 'HomeController@updatePost')->name('post.update');
 
 Route::get('/post/delete/{id}', 'HomeController@deletePost')->name('post.delete');
+
+Route::get('/post/read/{post_id}', 'PostController@getFullPost')->name('post.read');
