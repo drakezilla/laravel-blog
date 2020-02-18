@@ -23,3 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/post', 'HomeController@getPostForm')->name('post.form');
 Route::get('/post/detail/{id}', 'HomeController@getPost')->name('post.detail');
 Route::post('/post', 'HomeController@createPost')->name('post.form');
+
+Route::get('/post/edit/{id}', 'HomeController@editPost')->name('post.edit');
+Route::post('/post/edit/{id}', 'HomeController@updatePost')->name('post.update');
+
+Route::get('/post/delete/{id}', 'HomeController@deletePost')->name('post.delete');
