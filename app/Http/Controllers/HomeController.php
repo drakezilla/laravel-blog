@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Post;
 
@@ -24,7 +25,8 @@ class HomeController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index() {
-        return view('home');
+        $posts = DB::table('users')->leftjoin('posts', 'users.id', '=', 'posts.author')->paginate(10);
+        return view('home',['posts' => $posts]);
     }
 
     public function getPostForm() {
@@ -38,6 +40,11 @@ class HomeController extends Controller {
                     'author' => Auth::user()->id
         ));
         return redirect()->route('home')->with('success', 'Post has been successfully added!');
+    }
+    
+    public function getPost($id){
+        $post = Post::find($id);
+        return view("post/post_detail",array("post"=>$post));
     }
 
 }
