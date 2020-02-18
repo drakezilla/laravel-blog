@@ -1,0 +1,19 @@
+<VirtualHost *:80>
+
+    ServerAdmin webmaster@ostechnix2.lan
+    ServerName blog.lan
+    ServerAlias www.blog.lan
+    DocumentRoot /var/www/html/projects/blog/public
+
+    <Directory "/var/www/html/projects/blog/public">
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    </Directory>
+
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
